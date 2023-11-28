@@ -1,0 +1,47 @@
+openapi: 3.0.3
+info:
+  title: Api AUTH para APP MANTENIMIENTO
+  description: API para manejar las llamadas para la aplicacion de autentiacion
+  contact:
+    name: Christian Camelo Espinal
+    email: ccec1@alu.ua.es
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.1
+servers:
+- url: http://localhost:9090
+paths:
+  /login/{user}/{pass}:
+    post:
+      tags:
+      - usuario
+      summary: Valida un usuario
+      description: Valida un usuario mediante un nickname
+      operationId: checkUser
+      parameters:
+      - name: user
+        in: path
+        description: Nickname de usuario
+        required: true
+        style: simple
+        explode: true
+        schema:
+          type: string
+      - name: pass
+        in: path
+        description: Contraseña de usuario
+        required: true
+        style: simple
+        explode: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Usuario valido
+        "400":
+          description: Error Imposible de ejecutar
+        "401":
+          description: Usuario no encontrado
+      x-swagger-router-controller: Usuario
+components: {}
